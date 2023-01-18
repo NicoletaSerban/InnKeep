@@ -1,0 +1,30 @@
+<%- include('partials/header') -%>
+<div class="container">
+  <h1>staff profile</h1>
+  <div>
+    <p><strong>User Name</strong>: <%= user.userName %></p>
+    <p><strong>Email</strong>: <%= user.email %></p>
+    <a href="/staff/createNewTask/" class="col-3 btn btn-primary">Create new TASK</a>
+
+    <h3>Not completed:</h3>
+    <% for(task of tasks) {%>
+      <% if (!task.completed){ %>
+      <li class="col-6 justify-content-between mt-5">
+       <a href="/staff/task/<%=task._id%>"> <%= task.title%> - <%= task.importance%></a>
+      </li>
+      <% } %>
+    <% } %>
+
+    <h3>Completed:</h3>
+    <% for(task of tasks) {%>
+      <% if (task.completed){ %>
+      <li class="col-6 justify-content-between mt-5">
+       <a href="/staff/task/<%=task._id%>"> <%= task.title%> - <%= task.importance%></a>
+      </li>
+      <% } %>
+    <% } %>
+
+    <a href="/logout" class="col-3 btn btn-primary">Logout</a>
+</div>
+  </div>
+<%- include('partials/footer') -%>
