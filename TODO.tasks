@@ -5,5 +5,7 @@ Task anulat: alt + c
 Labeluri: @ si alegi ce vrei
 
 Small changes:
-    ☐ change the project name in package.json
+    ✔ change the project name in package.json @done (1/20/2023, 12:23:20 PM)
     ☐ add README.md
+    ☐ add tailwind
+    ☐ add comment to the code

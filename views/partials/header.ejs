@@ -14,19 +14,12 @@
         theme: {
           extend: {
             colors: {
-              primary: {
-                DEFAULT: "#9F2A2A",
-                50: "#F8EBE4",
-                100: "#F2D7CC",
-                200: "#E5AC9C",
-                300: "#D87B6C",
-                400: "#CB463B",
-                500: "#9F2A2A",
-                600: "#83232A",
-                700: "#661B26",
-                800: "#4A1420",
-                900: "#2E0C16",
-              },
+              lighter: "#A096B6",
+              light: "#7F729D",
+              primary: "#62567B",
+              medium: "#453D57",
+              dark: "#3E364E",
+              darker: "#363045",
             },
           },
         },
@@ -57,8 +50,11 @@
     <header class="container">
       <div class="text-center">
         <h1>
-          <a href="/admin" class="">Task maintenance app</a>
-          <a href="/admin" class="text-primary-900">Task maintenance app</a>
+          <a
+            href="/admin"
+            class="text-dark text-3xl py-4 flex justify justify-center font-bold hover:opacity-30"
+            >Task maintenance app</a
+          >
         </h1>
       </div>
     </header>
