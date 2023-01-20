@@ -7,5 +7,14 @@ Labeluri: @ si alegi ce vrei
 Small changes:
     ✔ change the project name in package.json @done (1/20/2023, 12:23:20 PM)
     ☐ add README.md
-    ☐ add tailwind
     ☐ add comment to the code
+
+Add styling with Tailwind:
+    ✔ Login @done (1/20/2023, 3:27:24 PM)
+    ✔ Signup @done (1/20/2023, 3:27:27 PM)
+    ☐ Task
+    ☐ profileStaff
+    ☐ profileAdmin
+    ☐ profileAdminDone
+    ☐ createNewTask
+    ☐ adminStaffMenu

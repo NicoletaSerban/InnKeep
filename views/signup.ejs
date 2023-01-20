@@ -1,39 +1,105 @@
 <%- include('partials/header') -%>
-    <main class="container">
-        <div class="row justify-content-center">
-            <section class="col-6 mt-5">
-                <% if (locals.messages.errors) { %>
-                    <% messages.errors.forEach( el => { %>
-                        <div class="alert alert-danger"><%= el.msg %></div>
-                    <% }) %>    
-                <% } %>
-                <% if (locals.messages.info) { %>
-                    <% messages.info.forEach( el => { %>
-                        <div class="alert alert-info"><%= el.msg %></div>
-                    <% }) %>    
-                <% } %>
-                <form action="/signup" method="POST">
-                    <div class="mb-3">
-                        <label for="userName" class="form-label">User Name</label>
-                        <input type="text" class="form-control" id="userName" name="userName">
-                      </div>
-                    <div class="mb-3">
-                      <label for="exampleInputEmail1" class="form-label">Email address</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
-                      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                    </div>
-                    <div class="mb-3">
-                      <label for="password" class="form-label">Password</label>
-                      <input type="password" class="form-control" id="password" name="password">
-                    </div>
-                    <div class="mb-3">
-                        <label for="confirmPassword" class="form-label">Confirm Password</label>
-                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword">
-                      </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                  </form>
-            </section>
+
+<section class="h-screen">
+  <div class="px-6 h-full text-dark">
+    <div
+      class="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6"
+    >
+      <div
+        class="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0"
+      >
+        <img
+          src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+          class="w-full"
+          alt="Sample image"
+        />
+      </div>
+
+      <div class="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
+        <form action="/signup" method="POST">
+          <div
+            class="flex flex-row items-center justify-center lg:justify-start"
+          >
+            <p class="text-xl mb-0 mr-4 font-bold text-medium pb-3">Register</p>
+          </div>
+
+          <!-- Username input -->
+          <div class="mb-6">
+            <label for="userName" class="form-label">User Name</label>
+            <input
+              type="text"
+              class="form-control block w-full px-4 py-2 text-xl text-primary bg-white bg-clip-padding border border-solid border-primary rounded transition ease-in-out m-0 focus:text-primary focus:bg-white focus:border-dark focus:outline-none"
+              id="userName"
+              aria-describedby="emailHelp"
+              name="userName"
+              placeholder="Username"
+            />
+          </div>
+
+          <!-- Email input -->
+          <div class="mb-6">
+            <label for="userName" class="form-label">Email address</label>
+            <input
+              type="email"
+              class="form-control block w-full px-4 py-2 text-xl text-primary bg-white bg-clip-padding border border-solid border-primary rounded transition ease-in-out m-0 focus:text-primary focus:bg-white focus:border-dark focus:outline-none"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              name="email"
+              placeholder="Email address"
+            />
+            <div id="emailHelp" class="form-text">
+              We'll never share your email with anyone else.
+            </div>
+          </div>
+
+          <!-- Password input -->
+          <div class="mb-6">
+            <label for="password" class="form-label">Password</label>
+            <input
+              type="password"
+              class="form-control block w-full px-4 py-2 text-xl text-primary bg-white bg-clip-padding border border-solid border-primary rounded transition ease-in-out m-0 focus:text-darker focus:bg-white focus:border-dark focus:outline-none"
+              id="password"
+              name="password"
+              placeholder="Password"
+            />
+          </div>
+
+          <!-- Confirm password -->
+          <div class="mb-6">
+            <label for="confirmPassword" class="form-label"
+              >Confirm Password</label
+            >
+            <input
+              type="password"
+              class="form-control block w-full px-4 py-2 text-xl text-primary bg-white bg-clip-padding border border-solid border-primary rounded transition ease-in-out m-0 focus:text-darker focus:bg-white focus:border-dark focus:outline-none"
+              id="confirmPassword"
+              name="confirmPassword"
+              placeholder="Confirm Password"
+            />
+          </div>
+
+          <div class="text-center lg:text-left">
+            <button
+              type="submit"
+              class="inline-block px-7 py-3 bg-dark text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-primary hover:shadow-lg focus:bg-dark focus:shadow-lg focus:outline-none focus:ring-0 active:bg-darker active:shadow-lg transition duration-150 ease-in-out"
+            >
+              Register
+            </button>
+          </div>
+        </form>
+
+        <div>
+          <% if (locals.messages.errors) { %> <% messages.errors.forEach( el =>
+          { %>
+          <div class="alert alert-danger"><%= el.msg %></div>
+          <% }) %> <% } %> <% if (locals.messages.info) { %> <%
+          messages.info.forEach( el => { %>
+          <div class="alert alert-info"><%= el.msg %></div>
+          <% }) %> <% } %>
         </div>
-    </main>
+      </div>
+    </div>
+  </div>
+</section>
 
 <%- include('partials/footer') -%>
