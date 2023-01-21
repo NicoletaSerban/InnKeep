@@ -8,6 +8,8 @@ Small changes:
     ✔ change the project name in package.json @done (1/20/2023, 12:23:20 PM)
     ☐ add README.md
     ☐ add comment to the code
+    ☐ add section for task assigned
+    ☐ add section for uncompleted
 
 Add styling with Tailwind:
     ✔ Login @done (1/20/2023, 3:27:24 PM)
@@ -18,3 +20,5 @@ Add styling with Tailwind:
     ☐ profileAdminDone
     ☐ createNewTask
     ☐ adminStaffMenu
+    ☐ create nav in header
+    ☐ footer

@@ -63,13 +63,13 @@
             >Register</a
           >
         </p>
-        <div>
+        <div class="text-red-700">
           <% if (locals.messages.errors) { %> <% messages.errors.forEach( el =>
           { %>
-          <div class="text-darker"><%= el.msg %></div>
+          <div "bg-red-100 rounded-lg py-5 px-6 mb-4 text-base text-red-700" role="alert"><%= el.msg %></div>
           <% }) %> <% } %> <% if (locals.messages.info) { %> <%
           messages.info.forEach( el => { %>
-          <div class="text-lighter"><%= el.msg %></div>
+          <div "bg-red-100 rounded-lg py-5 px-6 mb-4 text-base text-red-700" role="alert"><%= el.msg %></div>
           <% }) %> <% } %>
         </div>
       </div>

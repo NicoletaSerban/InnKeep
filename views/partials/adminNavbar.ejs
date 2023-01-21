@@ -1,0 +1,81 @@
+<!-- Admin profile -->
+<section >
+    <div class="w-full lg:w-4/12 px-4 mx-auto">
+      <div
+        class="relative flex flex-col min-w-0 break-words bg-lighter w-full mb-6 shadow-xl rounded-lg mt-6"
+      >
+        <div class="px-6">
+          <div class="flex flex-wrap justify-center">
+            <div class="w-full px-4 flex justify-center"></div>
+          </div>
+          <div class="text-center">
+            <h3 class="text-xl font-semibold leading-normal mb-2 text-medium">
+              Admin Profile
+            </h3>
+            <div
+              class="text-sm leading-normal mt-0 mb-2 text-dark font-bold uppercase"
+            >
+              <i class="fas fa-solid fa-user mr-2 text-lg text-dark"></i>
+              <%= user.userName %>
+            </div>
+            <div class="mb-2 text-text-medium mt-5">
+              <i class="fas fa-briefcase mr-2 text-lg text-dark"></i>
+              Manager
+            </div>
+            <div class="mb-2 text-medium">
+              <i class="fas fa-thin fa-at mr-2 text-lg text-dark"></i>
+              <%= user.email %>
+            </div>
+  
+            <!-- btn start -->
+            <div class="text-center">
+              
+              <div class="mb-2 text-medium"> 
+                
+                <button type="button" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"><a href="/logout" class="col-3 btn btn-primary">Logout</a>
+                  <i class="fas fa-thin fa-door-open  text-lg text-lighter"></i>
+                </button>
+                
+              </div>
+              <!-- end of btn -->
+          </div>
+  
+        </div>
+      </div>
+    </div>
+    
+  </section>
+  <!-- end admin profile -->
+
+  <!-- start navbar -->
+
+  <div class="h-screen w-fit bg-white relative flex overflow-hidden container mx-auto ">
+
+    <!-- Sidebar -->
+    <aside class="h-full w-20 flex flex-col space-y-10 items-center justify-center relative bg-darkest text-white">
+
+      <!-- Home -->
+      <div class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
+        <a href="/admin/staff"><i class="fas fa-light fa-house-user"></i></a>
+      </div>
+  
+      <!-- Not completed/outgoing -->
+      <div class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
+       <a href=""> <i class="fas fa-duotone fa-list"></i></a>
+      </div>
+  
+  
+      <!-- Task Completed -->
+      <div class="h-10 w-10 flex items-center justify-center rounded-lg cursor-pointer hover:text-gray-800 hover:bg-white  hover:duration-300 hover:ease-linear focus:bg-white">
+        <a href="/admin/tasksCompleted"><i class="fas fa-solid fa-check"></i></i></a>
+      </div>
+    </aside>
+  
+    <div class="w-full h-full flex justify-between">
+      <!-- Header -->
+      
+  
+      <!-- Main -->
+      <main class=" flex  container mx-auto">
+        
+      <!-- 3 divs not closing here because are in ejs pages containting this partial -->

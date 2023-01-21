@@ -1,0 +1,67 @@
+<%- include('partials/header') -%>
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <a href="/admin/staff" class="col-3 btn btn-primary">Staff menu</a>
+      <a href="/admin/tasksCompleted" class="col-3 btn btn-primary"
+        >Tasks done
+      </a>
+      <div>
+        <h1>Admin Profile</h1>
+        <p><strong>User Name</strong>: <%= user.userName %></p>
+        <p><strong>Email</strong>: <%= user.email %></p>
+        <a href="/logout" class="col-3 btn btn-primary">Logout</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-6">
+    <!-- Loop going through tasks collection-->
+    <ul class="row list-unstyled">
+      <% for(task of tasks) {%>
+
+      <!-- li with task info -->
+      <li class="col-6 justify-content-between">
+        <div class="card">
+          <div class="card-body">
+            <p class="card-title text-center">Title: <%=task.title%></p>
+            <p class="card-text">Description: <%=task.description%></p>
+            <p class="card-text">Location: <%=task.location%></p>
+            <p class="card-text">Importance: <%=task.importance%></p>
+            <p class="card-text">Created: <%=task.createdDate%></p>
+            <p class="card-text">Category: <%=task.category%></p>
+
+            <div class="row">
+              <!-- Dropdown going through staff collection -->
+              <form
+                action="/admin/assignJob/<%=task._id%>?_method=PUT"
+                method="POST"
+              >
+                <select class="card-text" name="assign">
+                  <option value="default">Select a staff member</option>
+                  <% for(member of staff) {%>
+                  <option value="<%=member._id%>">
+                    <%=member.userName%> - <%=member.category%>
+                  </option>
+                  <% } %>
+                </select>
+
+                <!-- Assign button (POST override)-->
+
+                <button type="submit" class="btn btn-sm btn-secondary">
+                  Assign
+                </button>
+              </form>
+            </div>
+            <!-- End of div row -->
+          </div>
+          <!-- End of div card-body -->
+        </div>
+        <!-- End of div card -->
+      </li>
+      <% } %>
+    </ul>
+  </div>
+</div>
+
+<%- include('partials/footer') -%>
