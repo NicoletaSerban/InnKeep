@@ -3,7 +3,6 @@ const validator = require("validator");
 const Admin = require("../models/Admin");
 const Staff = require("../models/Staff");
 
-
 exports.getLogin = (req, res) => {
   if (req.user) {
     return res.redirect("/admin");
@@ -28,7 +27,7 @@ exports.postLogin = (req, res, next) => {
     gmail_remove_dots: false,
   });
 
-  passport.authenticate(['admin', 'staff'], (err, user, info) => {
+  passport.authenticate(["admin", "staff"], (err, user, info) => {
     if (err) {
       return next(err);
     }
@@ -41,15 +40,15 @@ exports.postLogin = (req, res, next) => {
         return next(err);
       }
       req.flash("success", { msg: "Success! You are logged in." });
-      res.redirect(req.user.role === 'admin' ? '/admin' : '/staff');
+      res.redirect(req.user.role === "admin" ? "/admin" : "/staff");
     });
   })(req, res, next);
 };
 
 exports.logout = (req, res) => {
   req.logout(() => {
-    console.log('User has logged out.')
-  })
+    console.log("User has logged out.");
+  });
   req.session.destroy((err) => {
     if (err)
       console.log("Error : Failed to destroy the session during logout.", err);
@@ -132,7 +131,7 @@ exports.createStaff = (req, res, next) => {
 
   if (validationErrors.length) {
     req.flash("errors", validationErrors);
-    return res.redirect("../admin/staff");
+    return res.redirect("../admin");
   }
   req.body.email = validator.normalizeEmail(req.body.email, {
     gmail_remove_dots: false,
@@ -144,7 +143,7 @@ exports.createStaff = (req, res, next) => {
     password: req.body.password,
     category: req.body.category,
     active: true,
-    adminId: req.user.id
+    adminId: req.user.id,
   });
 
   Staff.findOne(
@@ -157,13 +156,13 @@ exports.createStaff = (req, res, next) => {
         req.flash("errors", {
           msg: "Account with that email address or username already exists.",
         });
-        return res.redirect("../admin/staff");
+        return res.redirect("../admin");
       }
       user.save((err) => {
         if (err) {
           return next(err);
         }
-        res.redirect("/admin/staff")
+        res.redirect("/admin");
         // req.logIn(user, (err) => {
         //   if (err) {
         //     return next(err);
