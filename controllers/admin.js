@@ -53,7 +53,7 @@ module.exports = {
       }
       console.log(staff);
       if (req.user.role === "admin") {
-        res.render("profileAdminDone.ejs", {
+        res.render("adminTaskCompleted.ejs", {
           tasks: tasks,
           user: req.user,
           staff: staff,

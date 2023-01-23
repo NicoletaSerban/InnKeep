@@ -4,49 +4,45 @@ const TaskSchema = new mongoose.Schema({
   title: {
     type: String,
     require: true,
-},
-description: {
+  },
+  description: {
     type: String,
     require: true,
-},
-location: {
+  },
+  location: {
     type: String,
     require: true,
-},
-importance: {
+  },
+  importance: {
     type: String,
     require: true,
-},
-createdDate: {
+  },
+  createdDate: {
     type: Date,
     default: Date.now,
-},
-category: {
+  },
+  category: {
     type: String,
     require: true,
-},
-assignedDate: {
+  },
+  assignedDate: {
     type: Date,
-    default: Date.now,
-},
-doneDate: {
+  },
+  doneDate: {
     type: Date,
-    default: Date.now,
-},
-completed: {
+  },
+  completed: {
     type: Boolean,
     required: true,
-},
-completedBy: {
+  },
+  completedBy: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Staff'
-},
-adminId: {
+    ref: "Staff",
+  },
+  adminId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Admin'
-},
-
-})
-
+    ref: "Admin",
+  },
+});
 
 module.exports = mongoose.model("Task", TaskSchema);
