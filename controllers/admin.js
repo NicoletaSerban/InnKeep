@@ -33,7 +33,7 @@ module.exports = {
       console.log(staffMembers);
       // rendering profile page with the data from the DB
       if (req.user.role === "admin") {
-        res.render("adminStaffMenu.ejs", { staff: staffMembers });
+        res.render("profileAdmin.ejs", { staff: staffMembers });
       }
     } catch (err) {
       console.log(err);
@@ -45,7 +45,14 @@ module.exports = {
       const tasks = await Task.find({ completed: true }).sort({
         createdDate: "desc",
       });
-      console.log(tasks);
+      const importanceMap = {
+        1: 'High',
+        2: 'Medium',
+        3: 'Low'
+      }
+      tasks.forEach(task => {
+        task.importance = importanceMap[task.importance];
+      });
       const staff = [];
       for (task of tasks) {
         console.log(task.completedBy);
@@ -65,6 +72,33 @@ module.exports = {
       console.log(err);
     }
   },
+  getTasksOngoing: async (req, res) => {
+    try {
+      const staff = await Staff.find({ adminId: req.user.id })
+      //$ne -- 'not equal to'
+      const assignedTasks = await Task.find({ completedBy: { $ne: null }, adminId: req.user.id, completed: false }).sort({ importance: 'asc', assignedDate: 'asc' }).populate({ path: 'completedBy', options: { sort: { createdDate: 'desc' } } });
+
+      const unAssignedTasks = await Task.find({ completedBy: null, adminId: req.user.id, completed: false }).sort({ importance: 'asc', assignedDate: 'asc' }).populate({ path: 'completedBy', options: { sort: { createdDate: 'desc' } } });
+
+      //show task.importance by string, not number
+      const importanceMap = {
+        1: 'High',
+        2: 'Medium',
+        3: 'Low'
+      }
+      assignedTasks.forEach(task => {
+        task.importance = importanceMap[task.importance];
+      });
+      unAssignedTasks.forEach(task => {
+        task.importance = importanceMap[task.importance];
+      });
+
+      res.render("adminTaskOngoing.ejs", { assignedTasks: assignedTasks, unAssignedTasks: unAssignedTasks, user: req.user, staff: staff });
+
+    } catch (err) {
+      console.log(err);
+    }
+  },
   assignJob: async (req, res) => {
     try {
       await Task.findOneAndUpdate(
@@ -75,7 +109,7 @@ module.exports = {
         }
       );
       console.log(`Assigned to ${req.body.assign}`);
-      res.redirect(`/admin/`);
+      res.redirect(`/admin/tasksOngoing`);
     } catch (err) {
       console.log(err);
     }

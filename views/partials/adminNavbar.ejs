@@ -1,17 +1,13 @@
 <!-- Admin profile -->
 <section>
   <div class="w-full lg:w-4/12 px-4 mx-auto">
-    <div
-      class="relative flex flex-col min-w-0 break-words bg-lighter w-full mb-6 shadow-xl rounded-lg mt-6"
-    >
+    <div class="relative flex flex-col min-w-0 break-words bg-lighter w-full mb-6 shadow-xl rounded-lg mt-6">
       <div class="px-6">
         <div class="text-center">
           <h3 class="text-xl font-semibold leading-normal mb-2 text-medium">
             Admin Panel
           </h3>
-          <div
-            class="text-sm leading-normal mt-0 mb-2 text-dark font-bold uppercase"
-          >
+          <div class="text-sm leading-normal mt-0 mb-2 text-dark font-bold uppercase">
             <i class="fas fa-solid fa-user mr-2 text-lg text-dark"></i>
             <%= user.userName %>
           </div>
@@ -27,10 +23,8 @@
           <!-- btn start -->
           <div class="text-center">
             <div class="mb-2 text-medium">
-              <button
-                type="button"
-                class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-              >
+              <button type="submit"
+                class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
                 <a href="/logout" class="col-3 btn btn-primary">Logout</a>
                 <i class="fas fa-thin fa-door-open text-lg text-lighter"></i>
               </button>
@@ -46,27 +40,18 @@
 
 <!-- start admin navbar -->
 <nav class="bg-white shadow dark:bg-darkest container mx-auto">
-  <div
-    class="flex items-center justify-center p-6 text-gray-600 capitalize dark:text-gray-300"
-  >
-    <a
-      href="/admin"
-      class="border-b-2 border-transparent hover:text-gray-800 dark:hover:text-gray-200 hover:border-light mx-1.5 sm:mx-6"
-      ><i class="fas fa-light fa-house-user"></i> Home</a
-    >
+  <div class="flex items-center justify-center p-6 text-gray-600 capitalize dark:text-gray-300">
+    <a href="/admin"
+      class="border-b-2 border-transparent hover:text-gray-800 dark:hover:text-gray-200 hover:border-light mx-1.5 sm:mx-6"><i
+        class="fas fa-light fa-house-user"></i> Home</a>
 
-    <a
-      href="#"
-      class="border-b-2 border-transparent hover:text-gray-800 dark:hover:text-gray-200 hover:border-light mx-1.5 sm:mx-6"
-    >
-      <i class="fas fa-duotone fa-list"></i> Ongoing tasks</a
-    >
+    <a href="/admin/tasksOngoing"
+      class="border-b-2 border-transparent hover:text-gray-800 dark:hover:text-gray-200 hover:border-light mx-1.5 sm:mx-6">
+      <i class="fas fa-duotone fa-list"></i> Ongoing tasks</a>
 
-    <a
-      href="/admin/tasksCompleted"
-      class="border-b-2 border-transparent hover:text-gray-800 dark:hover:text-gray-200 hover:border-light mx-1.5 sm:mx-6"
-      ><i class="fas fa-solid fa-check"></i> Task completed</a
-    >
+    <a href="/admin/tasksCompleted"
+      class="border-b-2 border-transparent hover:text-gray-800 dark:hover:text-gray-200 hover:border-light mx-1.5 sm:mx-6"><i
+        class="fas fa-solid fa-check"></i> Task completed</a>
   </div>
 </nav>
 <!-- end navbar -->

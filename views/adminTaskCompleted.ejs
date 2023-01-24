@@ -1,76 +1,78 @@
 <%- include('partials/header') -%> <%- include('partials/adminNavbar') -%>
-<div class="container mx-auto">
-  <div class="text-center">
-    <h3 class="font-medium text-3xl text-medium py-5">Tasks Completed</h3>
-  </div>
+    <div class="container mx-auto">
+      <div class="text-center">
+        <h3 class="font-medium text-3xl text-medium py-5">Tasks Completed</h3>
+      </div>
 
-  <!-- start of cards -->
-  <div
-    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full"
-  >
-    <% for(task of tasks) {%>
-    <div class="relative mx-auto w-full">
-      <div
-        class="relative inline-block duration-300 ease-in-out transition-transform transform hover:-translate-y-2 w-full"
-      >
-        <div class="shadow p-4 rounded-lg bg-lighter">
-          <div class="mt-4">
-            <h2
-              class="font-semibold text-base md:text-lg text-darker line-clamp-1"
-            >
-              Title: <%=task.title%>
-            </h2>
-            <p class="mt-2 text-normal text-darker line-clamp-1">
-              Description: <%=task.description%>
-            </p>
-          </div>
+      <!-- start of cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
+        <% for(task of tasks) {%>
+          <div class="relative mx-auto w-full">
+            <div
+              class="relative inline-block duration-300 ease-in-out transition-transform transform hover:-translate-y-2 w-full">
+              <div class="shadow p-4 rounded-lg bg-lighter">
+                <div class="mt-4">
+                  <h2 class="font-semibold text-base md:text-lg text-darker line-clamp-1">
+                    Title: <%=task.title%>
+                  </h2>
+                  <p class="mt-2 text-normal text-darker line-clamp-1">
+                    Description: <%=task.description%>
+                  </p>
+                </div>
 
-          <div class="grid grid-cols-2 grid-rows-2 gap-4 mt-8">
-            <p
-              class="inline-flex flex-col xl:flex-row xl:items-center text-darker"
-            >
-              <span class="mt-2 xl:mt-0">
-                <i class="fas fa-thin fa-calendar pr-2"></i> Assigned date:
-                <%=task.assignedDate.toLocaleDateString() %> -
-                <%=task.assignedDate.toLocaleTimeString() %>
-              </span>
-            </p>
-            <p
-              class="inline-flex flex-col xl:flex-row xl:items-center text-darker"
-            >
-              <span class="mt-2 xl:mt-0"
-                ><i class="fas fa-solid fa-calendar-check"></i> Done date:
-                <%=task.doneDate.toLocaleDateString()%> -
-                <%=task.doneDate.toLocaleTimeString()%>
-              </span>
-            </p>
-          </div>
+                <div class="grid grid-cols-2 grid-rows-2 gap-4 mt-8">
+                  <p class="inline-flex flex-col xl:flex-row xl:items-center text-darker">
+                    <span class="mt-2 xl:mt-0"><i class="fas fa-solid fa-calendar-check"></i> Done date:
+                      <%=task.createdDate.toLocaleDateString()%> -
+                        <%=task.createdDate.toLocaleTimeString()%>
+                    </span>
+                  </p>
+                  <p class="inline-flex flex-col xl:flex-row xl:items-center text-darker">
+                    <span class="mt-2 xl:mt-0">
+                      <i class="fas fa-thin fa-calendar pr-2"></i> Assigned date:
+                      <%=task.assignedDate.toLocaleDateString() %> -
+                        <%=task.assignedDate.toLocaleTimeString() %>
+                    </span>
+                  </p>
+                  <p class="inline-flex flex-col xl:flex-row xl:items-center font-semibold <% if(task.importance === 'High'){ %> dark:text-red-600
+                    <% } else if(task.importance === 'Medium') { %>  dark:text-yellow-400
+                      <% } else if(task.importance === 'Low'){ %> dark:text-blue-600
+                        <% } %> ">
+                    <span class="mt-2 xl:mt-0"><i class="fas fa-solid fa-calendar-check"></i>
+                      Importance: <%=task.importance%>
+                    </span>
+                  </p>
+                  <p class="inline-flex flex-col xl:flex-row xl:items-center text-darker">
+                    <span class="mt-2 xl:mt-0">
+                      <i class="fas fa-solid fa-location-arrow"></i> Location:
+                      <%=task.location%>
+                    </span>
+                  </p>
+                </div>
 
-          <div class="grid">
-            <div class="flex items-center">
-              <div class="relative">
-                <div
-                  class="rounded-full w-6 h-6 md:w-8 md:h-8 bg-primary"
-                ></div>
-                <span
-                  class="absolute top-0 right-0 inline-block w-3 h-3 bg-primary-red rounded-full"
-                ></span>
+                <div class="grid">
+                  <div class="flex items-center">
+                    <div class="relative">
+                      <div class="rounded-full w-6 h-6 md:w-8 md:h-8 bg-primary"></div>
+                      <span class="absolute top-0 right-0 inline-block w-3 h-3 bg-primary-red rounded-full"></span>
+                    </div>
+
+                    <% for(member of staff){%>
+                      <% if(task.completedBy==member.id){%>
+                        <p class="ml-2 text-dark line-clamp-1 font-medium">
+                          Completed by: <%=member.userName%>
+                        </p>
+                        <% } %>
+                          <% } %>
+                  </div>
+                </div>
               </div>
-
-              <% for(member of staff){%> <% if(task.completedBy == member.id){%>
-              <p class="ml-2 text-dark line-clamp-1 font-medium">
-                Completed by: <%=member.userName%>
-              </p>
-              <% } %> <% } %>
             </div>
           </div>
-        </div>
+          <% } %>
       </div>
+      <!-- end of cards -->
     </div>
-    <% } %>
-  </div>
-  <!-- end of cards -->
-</div>
-<!-- End of container class -->
+    <!-- End of container class -->
 
-<%- include('partials/footer') -%>
+    <%- include('partials/footer') -%>
