@@ -1,4 +1,87 @@
 <%- include('partials/header') -%> <%- include('partials/adminNavbar') -%>
+        <!-- Unassigned -->
+        <!-- start unassigned tasks -->
+        <div class="container mx-auto">
+            <div class="text-center">
+                <h3 class="font-medium text-3xl text-medium py-5">Tasks Unassigned</h3>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
+                <% for(task of unAssignedTasks) {%>
+                    <div class="relative mx-auto w-full">
+                        <div
+                            class="relative inline-block duration-300 ease-in-out transition-transform transform hover:-translate-y-2 w-full">
+                            <div class="shadow p-4 rounded-lg bg-lighter">
+                                <div class="mt-4">
+                                    <h2 class="font-semibold text-base md:text-lg text-darker line-clamp-1">
+                                        Title: <%=task.title%>
+                                    </h2>
+                                    <p class="mt-2 text-normal text-darker line-clamp-1">
+                                        Description: <%=task.description%>
+                                    </p>
+                                </div>
+
+                                <div class="grid grid-cols-2 grid-rows-2 gap-4 mt-8">
+                                    <p class="inline-flex flex-col xl:flex-row xl:items-center text-darker">
+                                        <span class="mt-2 xl:mt-0"><i class="fas fa-solid fa-calendar-check"></i>
+                                            Done date:
+                                            <%=task.createdDate.toLocaleDateString()%> -
+                                                <%=task.createdDate.toLocaleTimeString()%>
+                                        </span>
+                                    </p>
+
+                                    <p class="inline-flex flex-col xl:flex-row xl:items-center font-semibold <% if(task.importance === 'High'){ %> dark:text-red-600
+                                   <% } else if(task.importance === 'Medium') { %>  dark:text-green-600
+                                     <% } else if(task.importance === 'Low'){ %> dark:text-blue-600
+                                       <% } %> ">
+                                        <span class="mt-2 xl:mt-0"><i class="fas fa-solid fa-calendar-check"></i>
+                                            Importance: <%=task.importance%>
+                                        </span>
+                                    </p>
+                                    <p class="inline-flex flex-col xl:flex-row xl:items-center text-darker">
+                                        <span class="mt-2 xl:mt-0">
+                                            <i class="fas fa-solid fa-location-arrow"></i> Location:
+                                            <%=task.location%>
+                                        </span>
+                                    </p>
+                                    <div class="grid">
+                                        <div class="flex items-center">
+                                            <div class="text-center mb-2">
+                                                <form action="/admin/assignJob/<%=task._id%>?_method=PUT" method="POST">
+                                                    <select class="bg-dark text-white" name="assign">
+                                                        <option class="" value="default">Select staff</option>
+                                                        <% for(member of staff) {%>
+                                                            <option value="<%=member._id%>" class=" absolute top-0 right-0 inline-block w-3 h-3
+                                                                bg-primary-red rounded-full"></span>
+
+                                                                <%=member.userName%> - <%=member.category%>
+                                                            </option>
+                                                            <% } %>
+                                                    </select>
+                                                    <!-- Assign button (POST override)-->
+                                                    <button type="submit"
+                                                        class="text-dark text-2xl ml-3 hover:text-light"
+                                                        data-bs-placement="top" title="Assign staff to this job"><i
+                                                            class="fa-regular fa-square-check"></i></button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <% } %>
+                        <!-- end Second col -->
+            </div>
+
+            <!-- End of container class -->
+        </div>
+
+
+
+        <!-- start ongoing cards -->
         <div class="container mx-auto">
 
             <div class="text-center">
@@ -7,183 +90,86 @@
 
             <!-- start of cards -->
             <% if(assignedTasks.length> 0){%>
-                <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
                     <!-- start first col -->
-                    <div class="col-span-1">
-                        <% for(task of assignedTasks) {%>
-                            <div class="relative mx-auto w-full">
-                                <div
-                                    class="relative inline-block duration-300 ease-in-outtransition-transform transform hover:-translate-y-2 w-full">
-                                    <div class="shadow p-4 rounded-lg bg-lighter">
-                                        <div class="mt-4">
-                                            <h2 class="font-semibold text-base md:text-lg text-darker line-clamp-1">
-                                                Title: <%=task.title%>
-                                            </h2>
-                                            <p class="mt-2 text-normal text-darker line-clamp-1">
-                                                Description: <%=task.description%>
-                                            </p>
-                                        </div>
 
-                                        <div class="grid grid-cols-2 grid-rows-2 gap-4 mt-8">
-                                            <p class="inline-flex flex-col xl:flex-row xl:items-center text-darker">
-                                                <span class="mt-2 xl:mt-0">
-                                                    <i class="fas fa-thin fa-calendar pr-2"></i> Assigned date:
-                                                    <%=task.assignedDate.toLocaleDateString()%> -
-                                                        <%=task.assignedDate.toLocaleTimeString()%>
+                    <% for(task of assignedTasks) {%>
+                        <div class="relative mx-auto w-full">
+                            <div
+                                class="relative inline-block duration-300 ease-in-out transition-transform transform hover:-translate-y-2 w-full">
+                                <div class="shadow p-4 rounded-lg bg-lighter">
+                                    <div class="mt-4">
+                                        <h2 class="font-semibold text-base md:text-lg text-darker line-clamp-1">
+                                            Title: <%=task.title%>
+                                        </h2>
+                                        <p class="mt-2 text-normal text-darker line-clamp-1">
+                                            Description: <%=task.description%>
+                                        </p>
+                                    </div>
 
-                                                </span>
-                                            </p>
-                                            <p class="inline-flex flex-col xl:flex-row xl:items-center text-darker">
-                                                <span class="mt-2 xl:mt-0"><i
-                                                        class="fas fa-solid fa-calendar-check"></i>
-                                                    Created date: <%=task.createdDate.toLocaleDateString()%> -
-                                                        <%=task.createdDate.toLocaleTimeString()%>
-
-                                                </span>
-                                            </p>
-                                            <<p class="inline-flex flex-col xl:flex-row xl:items-center font-semibold text-center<% if(task.importance === 'High'){ %> dark:text-red-600
-                                            <% } else if(task.importance === 'Medium') { %>  dark:text-yellow-400
+                                    <div class="grid grid-cols-2 grid-rows-2 gap-4 mt-8">
+                                        <p class="inline-flex flex-col xl:flex-row xl:items-center text-darker">
+                                            <span class="mt-2 xl:mt-0">
+                                                <i class="fas fa-thin fa-calendar pr-2"></i> Assigned date:
+                                                <%=task.assignedDate.toLocaleDateString()%> -
+                                                    <%=task.assignedDate.toLocaleTimeString()%>
+                                            </span>
+                                        </p>
+                                        <p class="inline-flex flex-col xl:flex-row xl:items-center text-darker">
+                                            <span class="mt-2 xl:mt-0"><i class="fas fa-solid fa-calendar-check"></i>
+                                                Created date: <%=task.createdDate.toLocaleDateString()%> -
+                                                    <%=task.createdDate.toLocaleTimeString()%>
+                                            </span>
+                                        </p>
+                                        <p class="inline-flex flex-col xl:flex-row xl:items-center font-semibold<% if(task.importance === 'High'){ %> dark:text-red-600
+                                            <% } else if(task.importance === 'Medium') { %>  dark:text-green-600
                                               <% } else if(task.importance === 'Low'){ %> dark:text-blue-600
                                                 <% } %> ">
-                                                <span class="mt-2 xl:mt-0"><i
-                                                        class="fas fa-solid fa-calendar-check"></i>
-                                                    Importance: <%=task.importance%>
-                                                </span>
-                                                </p>
-                                                <p class="inline-flex flex-col xl:flex-row xl:items-center text-darker">
-                                                    <span class="mt-2 xl:mt-0">
-                                                        <i class="fas fa-solid fa-location-arrow"></i> Location:
-                                                        <%=task.location%>
-                                                    </span>
-                                                </p>
-                                        </div>
-
-                                        <div class="grid">
-                                            <div class="flex items-center">
-                                                <div class="relative">
-                                                    <div class="rounded-full w-6 h-6 md:w-8 md:h-8 bg-primary"></div>
-                                                    <span
-                                                        class="absolute top-0 right-0 inline-block w-3 h-3 bg-primary-red rounded-full"></span>
-                                                </div>
-                                                Category: <%=task.category%> - Assigned to:
-                                                    <%=task.completedBy.userName%>
-
-                                            </div>
-                                        </div>
-
-                                        <!-- end div shadow -->
+                                            <span class="mt-2 xl:mt-0"><i class="fas fa-solid fa-calendar-check"></i>
+                                                Importance: <%=task.importance%>
+                                            </span>
+                                        </p>
+                                        <p class="inline-flex flex-col xl:flex-row xl:items-center text-darker">
+                                            <span class="mt-2 xl:mt-0">
+                                                <i class="fas fa-solid fa-location-arrow"></i> Location:
+                                                <%=task.location%>
+                                            </span>
+                                        </p>
                                     </div>
 
-                                    <!-- end div relative inlone block -->
+                                    <div class="grid">
+                                        <div class="flex items-center">
+                                            <div class="relative">
+
+                                                <span
+                                                    class="absolute top-0 right-0 inline-block w-3 h-3 bg-primary-red rounded-full"></span>
+                                            </div>
+                                            Category: <%=task.category%> - Assigned to:
+                                                <%=task.completedBy.userName%>
+
+                                        </div>
+                                    </div>
+
+                                    <!-- end div shadow -->
                                 </div>
 
-                                <!-- end div class relative mx-auto -->
+                                <!-- end div relative inlone block -->
                             </div>
-                            <% } %>
 
-                                <!-- end div first col -->
-                    </div>
-                    <% } else{%>
-                        <p>No tasks ongoing right now!</p>
+                            <!-- end div class relative mx-auto -->
+                        </div>
                         <% } %>
-                            <!-- end cards and grid col2 -->
-                </div>
 
-                <!-- Unassigned -->
-                <!-- start secon col -->
-                <div class="">
-                    <div class="text-center">
-                        <h3 class="font-medium text-3xl text-medium py-5">Tasks Unassigned</h3>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
-                        <% for(task of unAssignedTasks) {%>
-                            <div class="relative mx-auto w-full">
-                                <div
-                                    class="relative inline-block duration-300 ease-in-out transition-transform transform hover:-translate-y-2 w-full">
-                                    <div class="shadow p-4 rounded-lg bg-lighter">
-                                        <div class="mt-4">
-                                            <h2 class="font-semibold text-base md:text-lg text-darker line-clamp-1">
-                                                Title: <%=task.title%>
-                                            </h2>
-                                            <p class="mt-2 text-normal text-darker line-clamp-1">
-                                                Description: <%=task.description%>
-                                            </p>
-                                        </div>
+                            <!-- end div first col -->
 
-                                        <div class="grid grid-cols-2 grid-rows-2 gap-4 mt-8">
-                                            <p class="inline-flex flex-col xl:flex-row xl:items-center text-darker">
-                                                <span class="mt-2 xl:mt-0"><i
-                                                        class="fas fa-solid fa-calendar-check"></i> Done date:
-                                                    <%=task.createdDate.toLocaleDateString()%> -
-                                                        <%=task.createdDate.toLocaleTimeString()%>
-                                                </span>
-                                            </p>
-
-                                            <p class="inline-flex flex-col xl:flex-row xl:items-center font-semibold <% if(task.importance === 'High'){ %> dark:text-red-600
-                                    <% } else if(task.importance === 'Medium') { %>  dark:text-yellow-400
-                                      <% } else if(task.importance === 'Low'){ %> dark:text-blue-600
-                                        <% } %> ">
-                                                <span class="mt-2 xl:mt-0"><i
-                                                        class="fas fa-solid fa-calendar-check"></i>
-                                                    Importance: <%=task.importance%>
-                                                </span>
-                                            </p>
-                                            <p class="inline-flex flex-col xl:flex-row xl:items-center text-darker">
-                                                <span class="mt-2 xl:mt-0">
-                                                    <i class="fas fa-solid fa-location-arrow"></i> Location:
-                                                    <%=task.location%>
-                                                </span>
-                                            </p>
-                                            <div class="text-center mb-2">
-                                                <form action="/admin/assignJob/<%=task._id%>?_method=PUT" method="POST">
-                                                    <select class="bg-gray-700 text-white" name="assign">
-                                                        <option class="" value="default">Select staff</option>
-                                                        <% for(member of staff) {%>
-                                                            <option value="<%=member._id%>" class="
-                                            <% if(member.category === 'cleaning') { %> dark:text-blue-400 
-                                            <% } else if(member.category === 'electrician') { %>  dark:text-yellow-400
-                                            <% } else if(member.category === 'handyman') { %> dark:text-green-400
-                                            <% } else if(member.category === 'plumber') { %> dark:text-orange-400
-                                            <% } %> ">
-                                                                <%=member.userName%> - <%=member.category%>
-                                                            </option>
-                                                            <% } %>
-                                                    </select>
-                                                    <!-- Assign button (POST override)-->
-                                                    <button type="submit"
-                                                        class="text-green-400 text-2xl ml-3 hover:text-green-900"
-                                                        data-bs-toggle="tooltip" data-bs-placement="top"
-                                                        title="Assign staff to this job"><i
-                                                            class="fa-regular fa-square-check"></i></button>
-                                                </form>
-                                            </div>
-
-                                            <div class="grid">
-                                                <div class="flex items-center">
-                                                    <div class="relative">
-                                                        <div class="rounded-full w-6 h-6 md:w-8 md:h-8 bg-primary">
-                                                        </div>
-                                                        <span
-                                                            class="absolute top-0 right-0 inline-block w-3 h-3 bg-primary-red rounded-full"></span>
-                                                    </div>
-
-                                                    <% for(member of staff){%>
-                                                        <% if(task.completedBy==member.id){%>
-                                                            <p class="ml-2 text-dark line-clamp-1 font-medium">
-                                                                Completed by: <%=member.userName%>
-                                                            </p>
-                                                            <% } %>
-                                                                <% } %>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <% } else{%>
+                                <p>No tasks ongoing right now!</p>
                                 <% } %>
-                            </div>
-                            <!-- end Second col -->
-                    </div>
-
-                    <!-- End of container class -->
+                                    <!-- end cards -->
                 </div>
-                <%- include('partials/footer') -%>
+
+                <!-- end ongoing cards -->
+        </div>
+
+
+        <%- include('partials/footer') -%>
