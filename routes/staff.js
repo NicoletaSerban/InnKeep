@@ -3,8 +3,8 @@ const router = express.Router();
 const staffController = require("../controllers/staff");
 const { ensureAuth } = require("../middleware/auth");
 
-router.get("/", ensureAuth, staffController.getStaff);
-router.get("/task/:id", staffController.getTasks);
+router.get("/", ensureAuth, staffController.getProfileStaff);
+router.get("/tasksCompleted", staffController.getTasksCompleted);
 router.post("/createNewTask/", staffController.createTask);
 router.get("/createNewTask", staffController.getCreateTask);
 

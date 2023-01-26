@@ -1,30 +1,203 @@
 <%- include('partials/header') -%>
-<div class="container">
-  <h1>staff profile</h1>
-  <div>
-    <p><strong>User Name</strong>: <%= user.userName %></p>
-    <p><strong>Email</strong>: <%= user.email %></p>
-    <a href="/staff/createNewTask/" class="col-3 btn btn-primary">Create new TASK</a>
+  <div class="container mx-auto">
+    <!-- start info account -->
+    <div class="mx-5  grid place-content-center mt-4">
+      <div class="bg-gradient-to-r from-light to-dark rounded-2xl text-white p-8 text-center h-72 max-w-sm mx-auto">
+        <h1 class="text-3xl mb-3">Hi <%= user.userName %>
+        </h1>
+        <p class="text-lg">Here you can see your tasks and create new ones.</p>
+      </div>
+      <div
+        class="bg-lighter py-8 px-10 text-center rounded-md shadow-lg transform -translate-y-20 sm:-translate-y-24 max-w-xs mx-auto">
+        <h2 class="font-semibold text-2xl mb-6">Your account info</h2>
+        <p class="capitalize text-xl mt-1">
+          <i class="fas fa-light fa-envelope"></i>
+          <%= user.email %>
+        </p>
+        <p class="capitalize text-xl mt-1">
+          <i class="fa-solid fa-toolbox"></i>
+          <%= user.category %>
+        </p>
 
-    <h3>Not completed:</h3>
-    <% for(task of tasks) {%>
-      <% if (!task.completed){ %>
-      <li class="col-6 justify-content-between mt-5">
-       <a href="/staff/task/<%=task._id%>"> <%= task.title%> - <%= task.importance%></a>
-      </li>
-      <% } %>
-    <% } %>
+        <span class="flex items-center border rounded-full w-24 pr-2 justify-center mx-auto mt-2 mb-6">
 
-    <h3>Completed:</h3>
-    <% for(task of tasks) {%>
-      <% if (task.completed){ %>
-      <li class="col-6 justify-content-between mt-5">
-       <a href="/staff/task/<%=task._id%>"> <%= task.title%> - <%= task.importance%></a>
-      </li>
-      <% } %>
-    <% } %>
+          <% if(user.active) { %>
+            <div class="bg-green-400 rounded-full w-2.5 h-2.5 block mr-2"></div>Active
+            <% }else {%>
+              <div class="bg-red-400 rounded-full w-2.5 h-2.5 block mr-2"></div>Inactive
+              <% } %>
+        </span>
+        <button type="text"
+          class="text-white bg-gradient-to-br from-light to-dark hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 ">
+          <a href="/staff/tasksCompleted/" class="col-3 btn btn-primary"><i class="fas fa-solid fa-check"></i>
+            Tasks
+            completed</a>
+        </button>
+        <button type="submit"
+          class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+          <a href="/logout" class="col-3 btn btn-primary"><i class="fas fa-thin fa-door-open text-lg text-lighter"></i>
+            Logout</a>
 
-    <a href="/logout" class="col-3 btn btn-primary">Logout</a>
-</div>
+        </button>
+      </div>
+    </div>
+    <!-- end info account -->
+
+    <!-- start section tasks -->
+    <div class="items-center justify-around md:grid md:grid-cols-2 -translate-y-20 sm:-translate-y-24">
+      <!-- start new tasks -->
+      <div class="rounded  shadow-sm transform -translate-y-20 sm:-translate-y-24">
+
+        <div class="min-h-screen py-4 flex flex-col justify-around sm:py-6">
+          <div class=" py-3 sm:max-w-xl sm:mx-auto">
+            <div class=" px-4 py-5 bg-lighter mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
+              <div class=" mx-auto">
+                <div class="flex items-center space-x-5">
+
+                  <div class="block pl-2 font-semibold text-2xl text-center text-darker">
+                    <h2 class="leading-relaxed">Create New Task</h2>
+                  </div>
+                </div>
+
+                <!-- start form -->
+                <form action="/staff/createNewTask/" method="POST">
+                  <div class="divide-y divide-primary">
+                    <div class="py-8 text-base leading-6 space-y-4 text-darker sm:text-lg sm:leading-7">
+                      <div class="flex flex-col">
+                        <label for="title" class="leading-loose font-medium">Title</label>
+                        <input type="text"
+                          class="px-4 py-2 border focus:primary focus:darkest w-full sm:text-sm border-lighter rounded-md focus:outline-none text-dark text-lg"
+                          placeholder="Title" id="title" name="title">
+                      </div>
+
+
+                      <div class="flex flex-col">
+                        <label class="leading-loose font-medium" for="location">Location</label>
+                        <div class="relative focus-within:text-primary text-dark">
+                          <input type="text"
+                            class="px-4 py-2 border focus:primary focus:darkest w-full sm:text-sm border-lighter rounded-md focus:outline-none text-dark text-lg"
+                            placeholder="Place of the problem" id="location" name="location">
+
+                        </div>
+                      </div>
+
+                      <div class="flex items-center gap-6">
+                        <div class="flex flex-col">
+                          <label class="leading-loose font-medium" for="category">Choose category:</label>
+                          <div class="relative focus-within:text-gray-600 text-gray-400">
+                            <select name="category" id="category"
+                              class="px-4 py-2 border focus:primary focus:darkest w-full sm:text-sm border-lighter rounded-md focus:outline-none text-dark">
+                              <option class="font-semibold" value="cleaning">Cleaning</option>
+                              <option class="font-semibold" value="electrician">Electrician</option>
+                              <option class="font-semibold" value="handyman">Handyman</option>
+                              <option class="font-semibold" value="plumber">Plumber</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="flex flex-col ">
+                          <label class="leading-loose font-semibold" for="importance">Importance</label>
+                          <div class="relative focus-within:darkest text-dark">
+                            <select name="importance" id="importance"
+                              class="px-4 py-2 border focus:primary focus:darkest w-full sm:text-sm border-lighter rounded-md focus:outline-none text-dark text-lg">
+                              <option class="font-semibold" value="1">High</option>
+                              <option class="font-semibold" value="2">Medium</option>
+                              <option class="font-semibold" value="3">Low</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="flex flex-col">
+                        <label class="leading-loose font-medium" for="description">Description</label>
+                        <input type="text"
+                          class="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
+                          placeholder="Description of the problem" id="description" name="description">
+                      </div>
+                    </div>
+                    <div class="pt-4 flex items-center space-x-4">
+                      <button
+                        class="flex justify-center items-center w-full text-darkest px-4 py-3 rounded-md focus:outline-none">
+                        <a href="/staff" class="text-lg"><i class="fa-sharp fa-solid fa-xmark"></i> Cancel</a>
+                      </button>
+                      <button type="submit"
+                        class="bg-primary flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none">Create</button>
+                    </div>
+                  </div>
+                  <!-- end of form -->
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end new tasks -->
+
+      <!-- start tasks not completed -->
+
+      <div class="p-8 rounded  shadow-sm mt-5 transform -translate-y-20 gap-2 ">
+        <h1 class="font-medium text-3xl text-medium mb-4">Tasks not completed</h1>
+        <div class="md:grid lg:grid-cols-2  md:grid-cols-1 gap-6 w-full">
+          <% for(task of tasks) {%>
+            <div class="relative mx-auto w-full">
+              <div class="relative inline-block duration-300 ease-in-out hover:-translate-y-2 w-full">
+                <div class="shadow p-4 rounded-lg bg-lighter">
+                  <div class="mt-4">
+                    <h2 class="font-semibold text-base md:text-lg text-darker line-clamp-1">
+                      Title: <%=task.title%>
+                    </h2>
+                    <p class="mt-2 text-normal text-darker line-clamp-1">
+                      Description: <%=task.description%>
+                    </p>
+                  </div>
+
+                  <div class="grid grid-cols-2 grid-rows-2 gap-4 mt-8">
+                    <p class="inline-flex flex-col xl:flex-row xl:items-center text-darker">
+                      <span class="mt-2 xl:mt-0"><i class="fas fa-solid fa-calendar-check"></i>
+                        Done date:
+                        <%=task.createdDate.toLocaleDateString()%> -
+                          <%=task.createdDate.toLocaleTimeString()%>
+                      </span>
+                    </p>
+
+                    <p class="inline-flex flex-col xl:flex-row xl:items-center font-semibold <% if(task.importance === 'High'){ %> dark:text-red-600
+                             <% } else if(task.importance === 'Medium') { %>  dark:text-green-600
+                               <% } else if(task.importance === 'Low'){ %> dark:text-blue-600
+                                 <% } %> ">
+                      <span class="mt-2 xl:mt-0"><i class="fas fa-solid fa-calendar-check"></i>
+                        Importance: <%=task.importance%>
+                      </span>
+                    </p>
+                    <p class="inline-flex flex-col xl:flex-row xl:items-center text-darker">
+                      <span class="mt-2 xl:mt-0">
+                        <i class="fas fa-solid fa-location-arrow"></i> Location:
+                        <%=task.location%>
+                      </span>
+                    </p>
+                    <div class="grid">
+                      <div class="flex items-center">
+                        <div class="text-center mb-2">
+                          <form action="/staff/task/markComplete/<%=task._id %>?_method=PUT" method="POST">
+
+                            <button class="text-dark text-2xl ml-3 hover:text-light" data-bs-placement="top"
+                              title="Mark as completed"><i class="fa-regular fa-square-check"></i></button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <% } %>
+
+        </div>
+      </div>
+
+      <!-- end tasks not completed -->
+
+      <!-- end section tasks -->
+    </div>
+    <!-- end of container -->
   </div>
-<%- include('partials/footer') -%>
+  <%- include('partials/footer') -%>

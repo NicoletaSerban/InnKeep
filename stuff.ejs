@@ -1,68 +1,64 @@
 <%- include('partials/header') -%>
-<div class="container">
-  <div class="row">
-    <div class="col-6">
-      <a href="/admin/staff" class="col-3 btn btn-primary">Staff menu</a>
-      <a href="/admin/tasksCompleted" class="col-3 btn btn-primary"
-        >Tasks done
-      </a>
-      <div>
-        <h1>Admin Profile</h1>
-        <p><strong>User Name</strong>: <%= user.userName %></p>
-        <p><strong>Email</strong>: <%= user.email %></p>
-        <a href="/logout" class="col-3 btn btn-primary">Logout</a>
+  <div class="container">
+    <form action="/staff/createNewTask/" method="POST">
+
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" class="form-control" id="title" name="title">
       </div>
-    </div>
-  </div>
 
-  <!-- assigne a task -->
-  <div class="col-6">
-    <!-- Loop going through tasks collection-->
-    <ul class="row list-unstyled">
-      <% for(task of tasks) {%>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <input type="text" class="form-control" id="description" name="description">
+      </div>
 
-      <!-- li with task info -->
-      <li class="col-6 justify-content-between">
-        <div class="card">
-          <div class="card-body">
-            <p class="card-title text-center">Title: <%=task.title%></p>
-            <p class="card-text">Description: <%=task.description%></p>
-            <p class="card-text">Location: <%=task.location%></p>
-            <p class="card-text">Importance: <%=task.importance%></p>
-            <p class="card-text">Created: <%=task.createdDate%></p>
-            <p class="card-text">Category: <%=task.category%></p>
+      <div class="mb-3">
+        <label for="location" class="form-label">Location</label>
+        <input type="text" class="form-control" id="location" name="location">
+      </div>
 
-            <div class="row">
-              <!-- Dropdown going through staff collection -->
-              <form
-                action="/admin/assignJob/<%=task._id%>?_method=PUT"
-                method="POST"
-              >
-                <select class="card-text" name="assign">
-                  <option value="default">Select a staff member</option>
-                  <% for(member of staff) {%>
-                  <option value="<%=member._id%>">
-                    <%=member.userName%> - <%=member.category%>
-                  </option>
-                  <% } %>
-                </select>
 
-                <!-- Assign button (POST override)-->
+      <label for="importance">Choose importance:</label>
 
-                <button type="submit" class="btn btn-sm btn-secondary">
-                  Assign
-                </button>
-              </form>
-            </div>
-            <!-- End of div row -->
-          </div>
-          <!-- End of div card-body -->
-        </div>
-        <!-- End of div card -->
+      <select name="importance" id="importance">
+        <option value="1">High</option>
+        <option value="2">Medium</option>
+        <option value="3">Low</option>
+      </select>
+
+      <label for="category">Choose category:</label>
+
+      <select name="category" id="category">
+        <option value="cleaning">Cleaning</option>
+        <option value="electrician">Electrician</option>
+        <option value="handyman">Handyman</option>
+        <option value="plumber">Plumber</option>
+      </select>
+
+
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <a href="/staff" class="col-3 btn btn-primary">Go back</a>
+
+  </div> <!-- End div container -->
+
+
+  <h3>Not completed:</h3>
+  <% for(task of tasks) {%>
+    <% if (!task.completed){ %>
+      <li class="col-6 justify-content-between mt-5">
+        <a href="/staff/task/<%=task._id%>">
+          <%= task.title%> - <%= task.importance%>
+        </a>
       </li>
       <% } %>
-    </ul>
-  </div>
-</div>
+        <% } %>
 
-<%- include('partials/footer') -%>
+          </div>
+
+          </div>
+          <!-- end tasks section -->
+          <form class="col-1" action="/staff/task/markComplete/<%=task._id %>?_method=PUT" method="POST">
+            <button class="btn btn-primary" type="submit">Done</button>
+          </form>

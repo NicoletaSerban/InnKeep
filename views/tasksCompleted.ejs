@@ -1,0 +1,109 @@
+<%- include('partials/header') -%>
+
+  <!-- start profile info -->
+  <div class="mx-5  grid place-content-center mt-4">
+    <div class="bg-gradient-to-r from-light to-dark rounded-2xl text-white p-8 text-center h-72 max-w-sm mx-auto">
+      <h1 class="text-3xl mb-3">Hi <%= user.userName %>
+      </h1>
+      <p class="text-lg">Here you can see your tasks and create new ones.</p>
+    </div>
+    <div
+      class="bg-lighter py-8 px-10 text-center rounded-md shadow-lg transform -translate-y-20 sm:-translate-y-24 max-w-xs mx-auto">
+      <h2 class="font-semibold text-2xl mb-6">Your account info</h2>
+      <p class="capitalize text-xl mt-1">
+        <i class="fas fa-light fa-envelope"></i>
+        <%= user.email %>
+      </p>
+      <p class="capitalize text-xl mt-1">
+        <i class="fa-solid fa-toolbox"></i>
+        <%= user.category %>
+      </p>
+
+      <% if(user.active) { %>
+        <span class="flex items-center border rounded-full w-24 pr-2 justify-center mx-auto mt-2 mb-6">
+          <div class="bg-green-400 rounded-full w-2.5 h-2.5 block mr-2"></div>Active
+        </span>
+
+        <% }else {%>
+          <span class="flex items-center border rounded-full w-24 pr-2 justify-center mx-auto mt-2 mb-6">
+            <div class="bg-red-400 rounded-full w-2.5 h-2.5 block mr-2"></div>Inactive
+          </span>
+          <% } %>
+            <div>
+              <button type="text"
+                class="text-white bg-gradient-to-br from-light to-dark hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 ">
+                <a href="/staff/"><i class="fas fa-light fa-house-user"></i> Home
+                </a>
+              </button>
+            </div>
+            <button type="submit"
+              class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+              <a href="/logout"> <i class="fas fa-thin fa-door-open text-lg text-lighter"></i> Logout
+              </a>
+            </button>
+    </div>
+  </div>
+  <!-- end profile info -->
+
+  <!-- start completed tasks cards -->
+  <div class="container mx-auto pb-8">
+    <div class="text-center">
+      <h3 class="font-medium text-3xl text-medium pb-3 transform -translate-y-5 sm:-translate-y-10">Tasks You Completed
+      </h3>
+    </div>
+    <!-- start of cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
+      <% for(task of tasks) {%>
+        <div class="relative mx-auto w-full">
+          <div
+            class="relative inline-block duration-300 ease-in-out transition-transform transform hover:-translate-y-2 w-full">
+            <div class="shadow p-4 rounded-lg bg-lighter">
+              <div class="mt-4">
+                <h2 class="font-semibold text-base md:text-lg text-darker line-clamp-1">
+                  Title: <%=task.title%>
+                </h2>
+                <p class="mt-2 text-normal text-darker line-clamp-1">
+                  Description: <%=task.description%>
+                </p>
+              </div>
+
+              <div class="grid grid-cols-2 grid-rows-2 gap-4 mt-8">
+                <p class="inline-flex flex-col xl:flex-row xl:items-center text-darker">
+                  <span class="mt-2 xl:mt-0">
+                    <i class="fas fa-thin fa-calendar pr-2"></i> Assigned date:
+                    <%=task.assignedDate.toLocaleDateString() %> -
+                      <%=task.assignedDate.toLocaleTimeString() %>
+                  </span>
+                </p>
+                <p class="inline-flex flex-col xl:flex-row xl:items-center text-darker">
+                  <span class="mt-2 xl:mt-0"><i class="fas fa-solid fa-calendar-check"></i> Done date:
+                    <%=task.createdDate.toLocaleDateString()%> -
+                      <%=task.createdDate.toLocaleTimeString()%>
+                  </span>
+                </p>
+
+                <p class="inline-flex flex-col xl:flex-row xl:items-center font-semibold <% if(task.importance === 'High'){ %> dark:text-red-600
+                  <% } else if(task.importance === 'Medium') { %>  dark:text-green-600
+                    <% } else if(task.importance === 'Low'){ %> dark:text-blue-600
+                      <% } %> ">
+                  <span class="mt-2 xl:mt-0"><i class="fas fa-solid fa-calendar-check"></i>
+                    Importance: <%=task.importance%>
+                  </span>
+                </p>
+                <p class="inline-flex flex-col xl:flex-row xl:items-center text-darker">
+                  <span class="mt-2 xl:mt-0">
+                    <i class="fas fa-solid fa-location-arrow"></i> Location:
+                    <%=task.location%>
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% } %>
+    </div>
+    <!-- end of cards -->
+  </div>
+
+
+  <%- include('partials/footer') -%>

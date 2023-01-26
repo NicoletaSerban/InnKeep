@@ -2,19 +2,30 @@ const Task = require("../models/Task");
 const Admin = require("../models/Admin");
 
 module.exports = {
-  getTasks: async (req, res) => {
+  getTasksCompleted: async (req, res) => {
     try {
-      const task = await Task.findById(req.params.id);
-      console.log(task);
-      res.render("task.ejs", {});
+      const tasks = await Task.find({ completedBy: req.user.id, completed: true }).sort({
+        createdAt: "asc",
+      });
+      //show task.importance by string, not number
+      const importanceMap = {
+        1: 'High',
+        2: 'Medium',
+        3: 'Low'
+      }
+      tasks.forEach(task => {
+        task.importance = importanceMap[task.importance];
+      });
+      console.log(tasks);
+      res.render("tasksCompleted.ejs", { tasks: tasks, user: req.user });
     } catch (err) {
       console.log(err);
     }
   },
 
-  getStaff: async (req, res) => {
+  getProfileStaff: async (req, res) => {
     try {
-      const tasks = await Task.find({ completedBy: req.user.id }).sort({
+      const tasks = await Task.find({ completedBy: req.user.id, completed: false }).sort({
         createdAt: "asc",
       });
 
@@ -62,7 +73,7 @@ module.exports = {
     const admin = await Admin.findById(req.user.adminId);
     console.log(admin);
     try {
-      res.render("createNewTask.ejs", { user: req.user });
+      res.render("profileStaff.ejs", { user: req.user });
     } catch (err) {
       console.log(err);
     }
