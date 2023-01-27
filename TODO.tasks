@@ -7,15 +7,15 @@ Labeluri: @ si alegi ce vrei
 Small changes:
     ✔ change the project name in package.json @done (1/20/2023, 12:23:20 PM)
     ☐ add README.md
-    ☐ add comment to the code
-    ☐ add section for task assigned
-    ☐ add section for uncompleted
+    ✔ add comment to the code @done (1/26/2023, 4:51:57 PM)
+    ✔ add section for task assigned @done (1/26/2023, 4:51:59 PM)
+    ✔ add section for uncompleted @done (1/26/2023, 2:23:56 PM)
 
 Add styling with Tailwind:
     ✔ Login @done (1/20/2023, 3:27:24 PM)
     ✔ Signup @done (1/20/2023, 3:27:27 PM)
     ☐ Task
-    ☐ profileStaff
+    ✔ profileStaff @done (1/26/2023, 2:22:32 PM)
     ✔ profileAdmin @done (1/26/2023, 12:31:57 PM)
     ✔ profileAdminDone @done (1/26/2023, 12:31:55 PM)
     ☐ createNewTask
@@ -24,4 +24,7 @@ Add styling with Tailwind:
     ☐ footer
 
     Staff page styling:
-        ☐ 
+        ✔ Tasks completed @done (1/26/2023, 2:23:34 PM)
+        ✔ Profile staff @done (1/26/2023, 4:51:48 PM)
+        ✔ Create tasks @done (1/26/2023, 4:51:50 PM)
+        ✔ Ongoint --> done @done (1/26/2023, 4:51:53 PM)
