@@ -41,10 +41,10 @@ To run this project, you will need to add the following environment variables to
 
 ## Screenshots
 <div align="center">
-![Screenshot_20230127_124030](https://user-images.githubusercontent.com/102362172/215077290-3b4d7d3b-27e6-45a5-b0cd-ba38a4af5628.png)
-![Screenshot_20230127_124112](https://user-images.githubusercontent.com/102362172/215077301-7aa4e83e-6f79-45e8-892a-e7afcbecc49b.png)
-![Screenshot_202301![Screenshot_20230127_125714](https://user-images.githubusercontent.com/102362172/215077318-8632795c-de71-415d-b395-1b899661ad1c.png)
-27_124423](https://user-images.githubusercontent.com/102362172/215077308-76e720ec-cae1-484d-b449-537f80dcc6b1.png)
+<img src="https://user-images.githubusercontent.com/102362172/215077290-3b4d7d3b-27e6-45a5-b0cd-ba38a4af5628.png" width="200" height="200">
+<img src="https://user-images.githubusercontent.com/102362172/215077301-7aa4e83e-6f79-45e8-892a-e7afcbecc49b.png" width="200" height="200">
+<img src="https://user-images.githubusercontent.com/102362172/215077318-8632795c-de71-415d-b395-1b899661ad1c.png" width="200" height="200">
+<img src="https://user-images.githubusercontent.com/102362172/215077308-76e720ec-cae1-484d-b449-537f80dcc6b1.png" width="200" height="200">
 
 </div>
 
