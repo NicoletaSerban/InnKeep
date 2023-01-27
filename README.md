@@ -2,7 +2,7 @@
 
 Inn Keep is a maintenance management app for hotels, inns, and other similar establishments. The app allows staff members to create tasks to inform the manager of any problems that need to be addressed, such as broken appliances or damaged fixtures. The manager can then assign an active member of the staff to resolve the problem. Inn Keep helps to streamline the maintenance process, making it easier for managers to keep track of issues and ensure that they are resolved in a timely manner.
 
-**Link to project:** https://pawsitively.onrender.com/
+**Link to project:** https://.onrender.com/
 
 ## How It's Made:
 
@@ -41,10 +41,11 @@ To run this project, you will need to add the following environment variables to
 
 ## Screenshots
 <div align="center">
-<img src="https://ibb.co/yR59nJr" width="200" height="200">
-<img src="https://ibb.co/b7FJyrL" width="200" height="200">
-<img src="https://ibb.co/jghSshc" width="200" height="200">
-<img src="https://ibb.co/vjyRGF4" width="200" height="200">
+![Screenshot_20230127_124030](https://user-images.githubusercontent.com/102362172/215077290-3b4d7d3b-27e6-45a5-b0cd-ba38a4af5628.png)
+![Screenshot_20230127_124112](https://user-images.githubusercontent.com/102362172/215077301-7aa4e83e-6f79-45e8-892a-e7afcbecc49b.png)
+![Screenshot_202301![Screenshot_20230127_125714](https://user-images.githubusercontent.com/102362172/215077318-8632795c-de71-415d-b395-1b899661ad1c.png)
+27_124423](https://user-images.githubusercontent.com/102362172/215077308-76e720ec-cae1-484d-b449-537f80dcc6b1.png)
+
 </div>
 
 
