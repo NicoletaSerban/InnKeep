@@ -2,7 +2,7 @@
 
 Inn Keep is a maintenance management app for hotels, inns, and other similar establishments. The app allows staff members to create tasks to inform the manager of any problems that need to be addressed, such as broken appliances or damaged fixtures. The manager can then assign an active member of the staff to resolve the problem. Inn Keep helps to streamline the maintenance process, making it easier for managers to keep track of issues and ensure that they are resolved in a timely manner.
 
-**Link to project:** https://.onrender.com/
+**Link to project:** [https://inn-keep.onrender.com]
 
 ## How It's Made:
 
